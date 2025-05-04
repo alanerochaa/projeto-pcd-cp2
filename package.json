@@ -1,0 +1,20 @@
+{
+  "name": "projeto-pcd-cp2",
+  "version": "1.0.0",
+  "description": "Este projeto tem como objetivo o desenvolvimento de um portal de **acessibilidade digital para Pessoas com Deficiência (PCDs)**, oferecendo informações úteis sobre saúde, mobilidade, inclusão educacional, direitos, benefícios e suporte psicológico.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanerochaa/projeto-pcd-cp2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanerochaa/projeto-pcd-cp2/issues"
+  },
+  "homepage": "https://github.com/alanerochaa/projeto-pcd-cp2#readme"
+}
