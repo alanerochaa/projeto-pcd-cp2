@@ -49,8 +49,6 @@ export default function Home() {
         </button>
       </div>
 
-
-      {/* Seção de Notícias */}
       <section className="w-full max-w-5xl bg-white p-6 rounded-xl shadow-lg mb-12">
         <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
           <Newspaper className="w-6 h-6" />
@@ -68,7 +66,6 @@ export default function Home() {
       </section>
 
 
-      {/* Seção de Depoimentos */}
       <section className="w-full max-w-5xl bg-white p-6 rounded-xl shadow-lg mb-12">
         <h2 className="text-2xl font-bold text-blue-900 mb-4 flex items-center gap-2">
           <Users className="w-6 h-6" />

@@ -1,191 +1,179 @@
 'use client';
 
-
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 
+const initialUserData = {
+  nome: 'Maria Silva',
+  email: 'maria@email.com',
+  telefone: '(11) 91234-5678',
+  cpf: '123.456.789-00',
+  dataNascimento: '1990-01-01',
+  genero: 'feminino',
+  preferenciaContato: 'email'
+};
 
-export default function AtualizarForm() {
-  const router = useRouter();
-  const [nome, setNome] = useState('');
-  const [sobrenome, setSobrenome] = useState('');
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [senha, setSenha] = useState('');
-  const [mensagem, setMensagem] = useState('');
-  const [tipoMensagem, setTipoMensagem] = useState<'sucesso' | 'erro' | ''>('');
-  const [senhaVisivel, setSenhaVisivel] = useState(false);
+export default function UpdateProfilePage() {
+  const [userData, setUserData] = useState(initialUserData);
+  const [editing, setEditing] = useState(false);
+  const [formValues, setFormValues] = useState(initialUserData);
 
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-
-    // Dados mock para simular a atualização
-    const dadosMock = [
-      {
-        nome: 'Alane',
-        sobrenome: 'Rocha',
-        email: 'alane@gmail.com',
-        cpf: '123.456.789‑00',
-        telefone: '(11) 94567‑8901',
-        senha: '123456'
-      },
-      {
-        nome: 'Julia',
-        sobrenome: 'Busso',
-        email: 'julia@gmail.com',
-        cpf: '987.654.321-00',
-        telefone: '(11) 91234-5678',
-        senha: '654321'
-      }
-    ];
-
-
-    // Verifica se os dados correspondem a algum usuário já existente
-    const usuarioExistente = dadosMock.find((usuario) =>
-      usuario.email === email
-    );
-
-
-    if (usuarioExistente) {
-      // Atualizando dados do usuário
-      usuarioExistente.nome = nome;
-      usuarioExistente.sobrenome = sobrenome;
-      usuarioExistente.cpf = cpf;
-      usuarioExistente.telefone = telefone;
-      usuarioExistente.senha = senha;
-
-
-      setMensagem('✅ Dados atualizados com sucesso!');
-      setTipoMensagem('sucesso');
-      setTimeout(() => {
-        router.push('/home');  // Redireciona após a atualização
-      }, 2000);
-    } else {
-      setMensagem('❌ Erro ao atualizar. Verifique os dados.');
-      setTipoMensagem('erro');
-    }
+  const handleEditClick = () => {
+    setFormValues(userData);
+    setEditing(true);
   };
 
+  const handleSave = () => {
+    setUserData(formValues);
+    setEditing(false);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormValues(prev => ({ ...prev, [name]: value }));
+  };
 
   return (
-    <main className="flex items-center justify-center min-h-screen bg-[#FCE8E1] p-6">
-      <div className="bg-white rounded-xl shadow-lg p-8 w-full sm:max-w-md md:max-w-sm lg:max-w-xs xl:max-w-xs">
-        <div className="text-center mb-6">
-          <img
-           src="/imagens/logo.png"
-           alt="Logo do Portal PCD"
-           className="w-[300px] h-[300px] rounded-full object-cover"
-          />
-        </div>
+    <main className="min-h-screen bg-[#FCE8E1] p-6">
+      <h1 className="text-3xl md:text-4xl font-bold text-center text-[#F28C6A] mb-10">
+        Meus Dados
+      </h1>
 
+      <div className="bg-white rounded-2xl shadow-md border border-[#F28C6A]/30 max-w-xl mx-auto p-6">
+        {!editing ? (
+          <>
+            <p className="mb-2"><strong className="text-[#2AA597]">Nome:</strong> {userData.nome}</p>
+            <p className="mb-2"><strong className="text-[#2AA597]">Email:</strong> {userData.email}</p>
+            <p className="mb-2"><strong className="text-[#2AA597]">Telefone:</strong> {userData.telefone}</p>
+            <p className="mb-2"><strong className="text-[#2AA597]">CPF:</strong> {userData.cpf}</p>
+            <p className="mb-2"><strong className="text-[#2AA597]">Data de Nascimento:</strong> {userData.dataNascimento}</p>
+            <p className="mb-2"><strong className="text-[#2AA597]">Gênero:</strong> {userData.genero}</p>
+            <p className="mb-2"><strong className="text-[#2AA597]">Preferência de Contato:</strong> {userData.preferenciaContato}</p>
+        
 
-        <h1 className="text-3xl font-bold text-[#F28C6A] mb-4 text-center">Atualizar Dados</h1>
-
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="nome" className="block text-[#2AA597] text-sm font-bold">Nome</label>
-            <input
-              type="text"
-              id="nome"
-              className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded focus:outline-none focus:ring focus:ring-[#6BA6BA] text-sm"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              placeholder="Seu nome"
-            />
-          </div>
-
-
-          <div>
-            <label htmlFor="sobrenome" className="block text-[#2AA597] text-sm font-bold">Sobrenome</label>
-            <input
-              type="text"
-              id="sobrenome"
-              className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded focus:outline-none focus:ring focus:ring-[#6BA6BA] text-sm"
-              value={sobrenome}
-              onChange={(e) => setSobrenome(e.target.value)}
-              placeholder="Seu sobrenome"
-            />
-          </div>
-
-
-          <div>
-            <label htmlFor="email" className="block text-[#2AA597] text-sm font-bold">Email</label>
-            <input
-              type="email"
-              id="email"
-              className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded focus:outline-none focus:ring focus:ring-[#6BA6BA] text-sm"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Seu email"
-            />
-          </div>
-
-
-          <div>
-            <label htmlFor="cpf" className="block text-[#2AA597] text-sm font-bold">CPF</label>
-            <input
-              type="text"
-              id="cpf"
-              className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded focus:outline-none focus:ring focus:ring-[#6BA6BA] text-sm"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
-              placeholder="000.000.000-00"
-            />
-          </div>
-
-
-          <div>
-            <label htmlFor="telefone" className="block text-[#2AA597] text-sm font-bold">Telefone</label>
-            <input
-              type="text"
-              id="telefone"
-              className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded focus:outline-none focus:ring focus:ring-[#6BA6BA] text-sm"
-              value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
-              placeholder="(00) 00000-0000"
-            />
-          </div>
-
-
-          <div className="relative">
-            <label htmlFor="senha" className="block text-[#2AA597] text-sm font-bold">Senha</label>
-            <input
-              type={senhaVisivel ? 'text' : 'password'}
-              id="senha"
-              className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded focus:outline-none focus:ring focus:ring-[#6BA6BA] text-sm pr-10"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              placeholder="Senha"
-            />
             <button
-              type="button"
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
-              onClick={() => setSenhaVisivel(!senhaVisivel)}
+              onClick={handleEditClick}
+              className="bg-[#F28C6A] hover:bg-[#E67C3C] text-white py-2 px-4 rounded"
             >
+              Editar
             </button>
-          </div>
+          </>
+        ) : (
+          <>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Nome</label>
+                <input
+                  type="text"
+                  name="nome"
+                  value={formValues.nome}
+                  onChange={handleChange}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formValues.email}
+                  onChange={handleChange}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Telefone</label>
+                <input
+                  type="text"
+                  name="telefone"
+                  value={formValues.telefone}
+                  onChange={handleChange}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">CPF</label>
+                <input
+                  type="text"
+                  name="cpf"
+                  value={formValues.cpf}
+                  onChange={handleChange}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Data de Nascimento</label>
+                <input
+                  type="date"
+                  name="dataNascimento"
+                  value={formValues.dataNascimento}
+                  onChange={handleChange}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Gênero</label>
+                <select
+                  name="genero"
+                  value={formValues.genero}
+                  onChange={handleChange}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                >
+                  <option value="">Selecione</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Preferência de Contato</label>
+                <div className="flex gap-4 mt-1">
+                  <label>
+                    <input
+                      type="radio"
+                      name="preferenciaContato"
+                      value="telefone"
+                      checked={formValues.preferenciaContato === 'telefone'}
+                      onChange={handleChange}
+                    />
+                    <span className="ml-1">Telefone</span>
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="preferenciaContato"
+                      value="email"
+                      checked={formValues.preferenciaContato === 'email'}
+                      onChange={handleChange}
+                    />
+                    <span className="ml-1">Email</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label className="block text-[#2AA597] text-sm font-bold">Sobre você</label>
+                <textarea
+                  name="bio"
+                  value={formValues.bio}
+                  onChange={handleChange}
+                  rows={3}
+                  className="w-full px-3 py-1.5 border border-[#6BA6BA] rounded text-sm"
+                />
+              </div>
 
-
-          <button
-            type="submit"
-            className="w-full py-2 bg-[#6BA6BA] text-white rounded font-semibold hover:bg-[#5A8A9A] focus:outline-none focus:ring focus:ring-[#F28C6A] text-sm"
-          >
-            Atualizar Dados
-          </button>
-        </form>
-
-
-        {mensagem && (
-          <div
-            className={`mt-4 text-center text-sm ${tipoMensagem === 'sucesso' ? 'text-green-600' : 'text-red-600'}`}
-          >
-            {mensagem}
-          </div>
+              <button
+                onClick={handleSave}
+                className="w-full py-2 bg-[#6BA6BA] text-white rounded font-semibold hover:bg-[#5A8A9A] mt-4"
+              >
+                Salvar Alterações
+              </button>
+              <button
+                onClick={() => setEditing(false)}
+                className="w-full py-2 bg-[#F28C6A] text-white rounded font-semibold hover:bg-[#E67C3C] mt-2"
+              >
+                Cancelar
+              </button>
+            </div>
+          </>
         )}
       </div>
     </main>

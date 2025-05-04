@@ -70,20 +70,17 @@ export default function ListagemPage() {
             rel="noopener noreferrer"
             className="block bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-5 border border-[#F28C6A]/30"
           >
-            {/* Título e descrição */}
             <div className="mb-4">
               <h2 className="text-xl font-semibold text-[#2AA597]">{item.title}</h2>
               <p className="text-sm text-gray-600 mt-2">{item.description}</p>
             </div>
 
-            {/* Texto de acesso (sem outro Link) */}
             <div className="mb-4">
               <p className="text-[#F28C6A] underline hover:text-[#F28C6A]/90">
                 Acesse o serviço
               </p>
             </div>
 
-            {/* Imagem */}
             <div className="overflow-hidden rounded-md mb-4">
               <Image
                 src={item.image}

@@ -14,10 +14,11 @@ export default function LoginForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Verifica se o email e a senha pertencem a um dos usuários autorizados
+    // Verificação se o email e a senha pertencem a um dos usuários autorizados
     const usuariosValidos = [
       { email: 'alane@gmail.com', senha: '123456' },
       { email: 'julia@gmail.com', senha: '654321' },
+      { email: 'maria@email.com', senha: '654321' },
     ]
 
     const usuarioValido = usuariosValidos.find(
@@ -44,7 +45,6 @@ export default function LoginForm() {
       </h2>
 
       <form onSubmit={handleSubmit} className="w-full space-y-3" noValidate>
-        {/* Email */}
         <div>
           <label
             htmlFor="email"
@@ -63,7 +63,7 @@ export default function LoginForm() {
           />
         </div>
 
-        {/* Senha */}
+        
         <div className="relative">
           <label
             htmlFor="senha"
@@ -89,7 +89,7 @@ export default function LoginForm() {
           </button>
         </div>
 
-        {/* Botão Entrar */}
+        
         <button
           type="submit"
           className="w-full py-2 bg-[#6BA6BA] text-white rounded font-semibold hover:bg-[#5A8A9A] focus:outline-none focus:ring focus:ring-[#F28C6A] text-sm"
@@ -97,7 +97,6 @@ export default function LoginForm() {
           Entrar
         </button>
 
-        {/* Mensagem de erro */}
         {erro && (
           <p
             className="text-[#F551EB] text-sm mt-2 text-center"
@@ -109,7 +108,7 @@ export default function LoginForm() {
         )}
       </form>
 
-      {/* Link de cadastro */}
+    
       <p className="mt-6 text-center text-sm">
         Não tem uma conta?{' '}
         <a

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -13,58 +13,55 @@ export default function CadastroForm() {
   const [telefone, setTelefone] = useState('');
   const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
-  const [tipoMensagem, setTipoMensagem] = useState<'sucesso' | 'erro' | ''>('');
+  const [tipoMensagem, setTipoMensagem] = useState<'sucesso' | 'erro' | ''>(''); 
   const [senhaVisivel, setSenhaVisivel] = useState(false);
 
+  // Carregar os usuários do localStorage
+  const carregarUsuarios = () => {
+    const usuarios = localStorage.getItem('usuarios');
+    return usuarios ? JSON.parse(usuarios) : [];
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const usuarios = carregarUsuarios();
 
-
-    // Dados mock para teste
-    const dadosMock = [
-      {
-        nome: 'Alane',
-        sobrenome: 'Rocha',
-        email: 'alane@gmail.com',
-        cpf: '123.456.789‑00',
-        telefone: '(11) 94567‑8901',
-        senha: '123456'
-      },
-      {
-        nome: 'Julia',
-        sobrenome: 'Busso',
-        email: 'julia@gmail.com',
-        cpf: '987.654.321-00',
-        telefone: '(11) 91234-5678',
-        senha: '654321'
-      }
-    ];
-
-
-    // Verificando se os dados correspondem aos valores mock
-    const jaExiste = dadosMock.some((usuario) =>
-      usuario.nome === nome &&
-      usuario.sobrenome === sobrenome &&
-      usuario.email === email &&
-      usuario.cpf === cpf &&
-      usuario.telefone === telefone &&
-      usuario.senha === senha
+    // Verificando se o usuário já existe
+    const jaExiste = usuarios.some(
+      (usuario: any) =>
+        usuario.nome === nome &&
+        usuario.sobrenome === sobrenome &&
+        usuario.email === email &&
+        usuario.cpf === cpf &&
+        usuario.telefone === telefone
     );
 
-
     if (jaExiste) {
-      setMensagem('Cadastro realizado com sucesso!');
-      setTipoMensagem('sucesso');
-      setTimeout(() => {
-        router.push('/login');  
-      }, 2000);
-    } else {
-      setMensagem('Erro ao cadastrar. Verifique os dados.');
+      setMensagem('Erro ao cadastrar. Usuário já existe.');
       setTipoMensagem('erro');
+      return;
     }
-  };
 
+    const novoUsuario = {
+      nome,
+      sobrenome,
+      email,
+      cpf,
+      telefone,
+      senha
+    };
+
+    // Adicionar novo usuário e salvar no localStorage
+    usuarios.push(novoUsuario);
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+    setMensagem('Cadastro realizado com sucesso!');
+    setTipoMensagem('sucesso');
+
+    setTimeout(() => {
+      router.push('/login');
+    }, 2000);
+  };
 
   return (
     <main className="flex items-center justify-center min-h-screen bg-[#FCE8E1] p-6">
@@ -77,9 +74,7 @@ export default function CadastroForm() {
           />
         </div>
 
-
         <h1 className="text-3xl font-bold text-[#F28C6A] mb-4 text-center">Cadastre-se</h1>
-
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -94,7 +89,6 @@ export default function CadastroForm() {
             />
           </div>
 
-
           <div>
             <label htmlFor="sobrenome" className="block text-[#2AA597] text-sm font-bold">Sobrenome</label>
             <input
@@ -106,7 +100,6 @@ export default function CadastroForm() {
               placeholder="Seu sobrenome"
             />
           </div>
-
 
           <div>
             <label htmlFor="email" className="block text-[#2AA597] text-sm font-bold">Email</label>
@@ -120,7 +113,6 @@ export default function CadastroForm() {
             />
           </div>
 
-
           <div>
             <label htmlFor="cpf" className="block text-[#2AA597] text-sm font-bold">CPF</label>
             <input
@@ -133,7 +125,6 @@ export default function CadastroForm() {
             />
           </div>
 
-
           <div>
             <label htmlFor="telefone" className="block text-[#2AA597] text-sm font-bold">Telefone</label>
             <input
@@ -145,7 +136,6 @@ export default function CadastroForm() {
               placeholder="(00) 00000-0000"
             />
           </div>
-
 
           <div className="relative">
             <label htmlFor="senha" className="block text-[#2AA597] text-sm font-bold">Senha</label>
@@ -164,6 +154,7 @@ export default function CadastroForm() {
             >
             </button>
           </div>
+
           <button
             type="submit"
             className="w-full py-2 bg-[#6BA6BA] text-white rounded font-semibold hover:bg-[#5A8A9A] focus:outline-none focus:ring focus:ring-[#F28C6A] text-sm"
@@ -172,7 +163,6 @@ export default function CadastroForm() {
           </button>
         </form>
 
-
         {mensagem && (
           <div
             className={`mt-4 text-center text-sm ${tipoMensagem === 'sucesso' ? 'text-green-600' : 'text-red-600'}`}
@@ -180,7 +170,6 @@ export default function CadastroForm() {
             {mensagem}
           </div>
         )}
-
 
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
@@ -194,5 +183,3 @@ export default function CadastroForm() {
     </main>
   );
 }
-
-

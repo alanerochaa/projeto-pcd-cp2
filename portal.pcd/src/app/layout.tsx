@@ -11,15 +11,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <title>Incluir.me – Portal PCD</title>
       </head>
       <body className="flex flex-col min-h-screen">
-        {/* Header global */}
+        
         <Header />
-
-        {/* Conteúdo principal que rola */}
         <main className="flex-1 overflow-auto bg-[#FCE8E]">
           {children}
         </main>
 
-        {/* Footer global */}
         <Footer />
       </body>
     </html>

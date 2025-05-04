@@ -1,7 +1,7 @@
 'use client'
 
 
-import LoginForm from './LoginForm'
+import LoginForm from './loginForm'
 
 
 export default function LoginPage() {
