@@ -1,38 +1,88 @@
 'use client'
 
-
-import Link from 'next/link'
-
+import Image from 'next/image'
+import Link from "next/link";
 
 const servicos = [
-  { nome: 'Saúde e Reabilitação', slug: 'saude' },
-  { nome: 'Benefícios e Direitos', slug: 'beneficios' },
-  { nome: 'Emprego e Profissionalização', slug: 'emprego' },
-  { nome: 'Educação Inclusiva', slug: 'educacao' },
-  { nome: 'Acessibilidade Urbana', slug: 'mobilidade' },
-  { nome: 'Apoio Psicológico', slug: 'psicologico' },
-  { nome: 'Tecnologia Assistiva', slug: 'tecnologia' },
-  { nome: 'Denúncias e Reclamações', slug: 'denuncias' },
-]
-
+  {
+    title: "Serviços de Saúde e Reabilitação",
+    href: "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-da-pessoa-com-deficiencia",
+    description: "No site do Gov.br você encontra a maioria das formas de saúde e reabilitação que o Brasil tem para oferecer",
+    image: "/imagens/cadeiranteobra1.jpg"
+  },
+  {
+    title: "Benefícios e Direitos",
+    href: "https://educacao.uol.com.br/noticias/2024/09/10/o-que-e-pcd-entenda-a-sigla-e-quem-tem-direito-a-beneficios.htm",
+    description: "Informações sobre auxílios, aposentadoria, isenções e leis de proteção à pessoa com deficiência.",
+    image: "/imagens/beneficios.jpg",
+  },
+  {
+    title: "Emprego e Profissionalização",
+    href: "https://www.portaldainclusao.org.br/cms/solicitacao-de-participacao",
+    description: "Oportunidades de trabalho, capacitação e inclusão no mercado profissional.",
+    image: "/imagens/emprego.jpg",
+  },
+  {
+    title: "Educação Inclusiva",
+    href: "https://todospelaeducacao.org.br/noticias/conheca-o-historico-da-legislacao-sobre-educacao-inclusiva/",
+    description: "Direitos e recursos para acesso à educação com suporte e equidade.",
+    image: "/imagens/educacao.jpg",
+  },
+  {
+    title: "Acessibilidade Urbana e Mobilidade",
+    href: "https://itdp.org/wp-content/uploads/2022/06/Acesso-para-pessoas-com-deficiencia-em-areas-urbanas.pdf",
+    description: "Conheça mais sobre infraestrutura, transporte e acessos adequados para todos os espaços públicos.",
+    image: "/imagens/acessibilidade.jpg",
+  },
+  {
+    title: "Comunidades e Apoio Psicológico",
+    href: "https://www.gov.br/mds/pt-br/acoes-e-programas/suas/unidades-de-atendimento/servico-de-acolhimento-para-pessoas-com-deficiencia",
+    description: "Acolhimento emocional e atendimento psicológico especializado. Saiba como acessar essas formas de ajuda.",
+    image: "/imagens/apoio.jpg",
+  },
+  {
+    title: "Produtos e Tecnologia Assistiva",
+    href: "https://www.icom.app/tecnologia-assistiva-oque-e-tipos-e-ferramentas/",
+    description: "Ferramentas, dispositivos e inovações para promover autonomia e inclusão.",
+    image: "/imagens/tecnologia.jpg",
+  },
+  {
+    title: "Denúncias e Reclamações",
+    href: "https://capital.sp.gov.br/web/pessoa_com_deficiencia/w/publicacoes/307925",
+    description: "Canais para relatar violações de direitos, abusos ou falta de acessibilidade. Atende 24h, todos os dias.",
+    image: "/imagens/denuncias.jpg",
+  },
+];
 
 export default function ListagemPage() {
   return (
-    <main className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Serviços para o público PCD</h1>
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {servicos.map((servico) => (
-          <li key={servico.slug}>
-            <Link href={`/listagem/${servico.slug}`}>
-              <div className="bg-blue-100 hover:bg-blue-200 p-4 rounded shadow cursor-pointer">
-                {servico.nome}
-              </div>
-            </Link>
-          </li>
+    <main className="min-h-screen bg-[#FCE8E1] p-6">
+      <h1 className="text-3xl md:text-4xl font-bold text-center text-[#F28C6A] mb-10">
+        Serviços para Pessoas com Deficiência
+      </h1>
+
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {servicos.map((item, index) => (
+          <Link
+            key={index}
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-5 border border-[#F28C6A]/30"
+          >
+            <div className="w-full h-40 relative rounded-md overflow-hidden mb-4 pointer-events-none">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <h2 className="text-xl font-semibold text-[#2AA597]">{item.title}</h2>
+            <p className="text-sm text-gray-600 mt-2">{item.description}</p>
+          </Link>
         ))}
-      </ul>
+      </div>
     </main>
-  )
+  );
 }
-
-
