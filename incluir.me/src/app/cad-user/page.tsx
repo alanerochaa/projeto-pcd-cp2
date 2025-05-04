@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Eye, EyeOff } from 'lucide-react';
-
 
 export default function CadastroForm() {
   const router = useRouter();
@@ -73,14 +71,14 @@ export default function CadastroForm() {
       <div className="bg-white rounded-xl shadow-lg p-8 w-full sm:max-w-md md:max-w-sm lg:max-w-xs xl:max-w-xs">
         <div className="text-center mb-6">
           <img
-            src="/imagens/Logo.jpg"
-            alt="Logotipo do Incluir.me"
-            className="w-[150px] h-[150px] rounded-full object-cover mx-auto"
+            src="/imagens/logo.png"
+            alt="Logo do Portal PCD"
+            className="w-[300px] h-[300px] rounded-full object-cover"
           />
         </div>
 
 
-        <h1 className="text-3xl font-bold text-[#F28C6A] mb-4 text-center">Cadastro</h1>
+        <h1 className="text-3xl font-bold text-[#F28C6A] mb-4 text-center">Cadastre-se</h1>
 
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -166,8 +164,6 @@ export default function CadastroForm() {
             >
             </button>
           </div>
-
-
           <button
             type="submit"
             className="w-full py-2 bg-[#6BA6BA] text-white rounded font-semibold hover:bg-[#5A8A9A] focus:outline-none focus:ring focus:ring-[#F28C6A] text-sm"
@@ -188,7 +184,7 @@ export default function CadastroForm() {
 
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
-            Já tem uma conta?{' '}
+            Já possui uma conta?{' '}
             <Link href="/login" className="text-[#6BA6BA] hover:underline">
               Faça login
             </Link>

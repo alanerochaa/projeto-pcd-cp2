@@ -76,9 +76,9 @@ export default function AtualizarForm() {
       <div className="bg-white rounded-xl shadow-lg p-8 w-full sm:max-w-md md:max-w-sm lg:max-w-xs xl:max-w-xs">
         <div className="text-center mb-6">
           <img
-            src="/imagens/Logo.jpg"
-            alt="Logotipo do Incluir.me"
-            className="w-[150px] h-[150px] rounded-full object-cover mx-auto"
+           src="/imagens/logo.png"
+           alt="Logo do Portal PCD"
+           className="w-[300px] h-[300px] rounded-full object-cover"
           />
         </div>
 
@@ -187,16 +187,6 @@ export default function AtualizarForm() {
             {mensagem}
           </div>
         )}
-
-
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">
-            Voltar para o{' '}
-            <Link href="/home" className="text-[#6BA6BA] hover:underline">
-              Início
-            </Link>
-          </p>
-        </div>
       </div>
     </main>
   );

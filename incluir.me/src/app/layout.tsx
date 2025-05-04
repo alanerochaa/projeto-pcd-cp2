@@ -1,6 +1,8 @@
-// src/app/layout.tsx
+'use client'
 import './globals.css'
 import { ReactNode } from 'react'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -8,7 +10,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <title>Incluir.me – Portal PCD</title>
       </head>
-      <body>{children}</body>
+      <body className="flex flex-col min-h-screen">
+        {/* Header global */}
+        <Header />
+
+        {/* Conteúdo principal que rola */}
+        <main className="flex-1 overflow-auto bg-[#FCE8E]">
+          {children}
+        </main>
+
+        {/* Footer global */}
+        <Footer />
+      </body>
     </html>
   )
 }

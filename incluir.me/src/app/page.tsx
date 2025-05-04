@@ -21,20 +21,20 @@ export default function HomePage() {
     <main className="flex flex-col items-center justify-center min-h-screen bg-[#FCE8E1] p-6 text-center">
       <div className="mb-6">
         <img
-          src="/imagens/Logo.jpg"
-          alt="Logotipo do Incluir.me"
+          src="/imagens/logo.png"
+          alt="Logo do Portal PCD"
           className="w-[300px] h-[300px] rounded-full object-cover"
         />
       </div>
 
 
       <h1 className="text-3xl md:text-4xl font-bold text-[#F28C6A] mb-4">
-        Incluir.me – Acesso, voz e acolhimento em um só lugar.
+        Portal - PCD : Acesso, voz e acolhimento em um só lugar.
       </h1>
 
 
       <p className="text-xl text-[#2AA597] mb-2">
-        🖐️ Olá! Seja muito bem-vindo(a) ao <strong>Incluir.me</strong>!
+        🖐️ Olá! Seja muito bem-vindo(a) ao <strong>Portal-PCD</strong>!
       </p>
 
 

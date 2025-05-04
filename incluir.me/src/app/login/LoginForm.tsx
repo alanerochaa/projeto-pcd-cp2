@@ -69,7 +69,7 @@ export default function LoginForm() {
             htmlFor="senha"
             className="block text-[#2AA597] text-sm font-bold mb-[2px]"
           >
-            Senha
+            Senha:
           </label>
           <input
             id="senha"

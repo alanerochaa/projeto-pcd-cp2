@@ -21,9 +21,9 @@ export default function Home() {
 
 
   return (
-    <main className="min-h-screen bg-blue-50 flex flex-col items-center p-8 font-sans">
+    <main className="min-h-screen bg-[#FCE8E1] flex flex-col items-center p-8 font-sans">
       <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4 text-center leading-tight">
-        Portal PCD – Acessibilidade e Informação
+         Acessibilidade e Informação
       </h1>
 
 

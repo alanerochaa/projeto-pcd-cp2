@@ -1,21 +1,20 @@
-<<<<<<< Updated upstream
-'use client'
+'use client';
 
-import Image from 'next/image'
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const servicos = [
   {
     title: "Serviços de Saúde e Reabilitação",
     href: "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-da-pessoa-com-deficiencia",
     description: "No site do Gov.br você encontra a maioria das formas de saúde e reabilitação que o Brasil tem para oferecer",
-    image: "/imagens/cadeiranteobra1.jpg"
+    image: "/imagens/reabilitacao.jpg",
   },
   {
     title: "Benefícios e Direitos",
     href: "https://educacao.uol.com.br/noticias/2024/09/10/o-que-e-pcd-entenda-a-sigla-e-quem-tem-direito-a-beneficios.htm",
     description: "Informações sobre auxílios, aposentadoria, isenções e leis de proteção à pessoa com deficiência.",
-    image: "/imagens/beneficios.jpg",
+    image: "/imagens/direitos.jpg",
   },
   {
     title: "Emprego e Profissionalização",
@@ -27,7 +26,7 @@ const servicos = [
     title: "Educação Inclusiva",
     href: "https://todospelaeducacao.org.br/noticias/conheca-o-historico-da-legislacao-sobre-educacao-inclusiva/",
     description: "Direitos e recursos para acesso à educação com suporte e equidade.",
-    image: "/imagens/educacao.jpg",
+    image: "/imagens/educacao.png",
   },
   {
     title: "Acessibilidade Urbana e Mobilidade",
@@ -39,7 +38,7 @@ const servicos = [
     title: "Comunidades e Apoio Psicológico",
     href: "https://www.gov.br/mds/pt-br/acoes-e-programas/suas/unidades-de-atendimento/servico-de-acolhimento-para-pessoas-com-deficiencia",
     description: "Acolhimento emocional e atendimento psicológico especializado. Saiba como acessar essas formas de ajuda.",
-    image: "/imagens/apoio.jpg",
+    image: "/imagens/comunidade.jpg",
   },
   {
     title: "Produtos e Tecnologia Assistiva",
@@ -62,115 +61,41 @@ export default function ListagemPage() {
         Serviços para Pessoas com Deficiência
       </h1>
 
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {servicos.map((item, index) => (
+      <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6">
+        {servicos.map((item, idx) => (
           <Link
-            key={index}
+            key={idx}
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
             className="block bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow p-5 border border-[#F28C6A]/30"
           >
-            <div className="w-full h-40 relative rounded-md overflow-hidden mb-4 pointer-events-none">
+            {/* Título e descrição */}
+            <div className="mb-4">
+              <h2 className="text-xl font-semibold text-[#2AA597]">{item.title}</h2>
+              <p className="text-sm text-gray-600 mt-2">{item.description}</p>
+            </div>
+
+            {/* Texto de acesso (sem outro Link) */}
+            <div className="mb-4">
+              <p className="text-[#F28C6A] underline hover:text-[#F28C6A]/90">
+                Acesse o serviço
+              </p>
+            </div>
+
+            {/* Imagem */}
+            <div className="overflow-hidden rounded-md mb-4">
               <Image
                 src={item.image}
                 alt={item.title}
-                fill
-                className="object-cover"
+                width={300}
+                height={180}
+                className="object-contain w-full"
               />
             </div>
-            <h2 className="text-xl font-semibold text-[#2AA597]">{item.title}</h2>
-            <p className="text-sm text-gray-600 mt-2">{item.description}</p>
           </Link>
         ))}
       </div>
     </main>
   );
 }
-=======
-import React from "react";
-import Image from "next/image";
-
-const temas = [
-  {
-    titulo: "Serviços de Saúde e Reabilitação",
-    imagem: "/images/reabilitacao.jpg",
-    texto: "No site do Gov.br você encontra a maioria das formas de saúde e reabilitação que o Brasil tem para oferecer",
-    link: "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-da-pessoa-com-deficiencia",
-  },
-  {
-    titulo: "Benefícios e Direitos",
-    imagem: "/images/direitos.jpg",
-    texto: "Informações sobre auxílios, aposentadoria, isenções e leis de proteção à pessoa com deficiência.",
-    link: "https://educacao.uol.com.br/noticias/2024/09/10/o-que-e-pcd-entenda-a-sigla-e-quem-tem-direito-a-beneficios.htm",
-  },
-  {
-    titulo: "Emprego e Profissionalização",
-    imagem: "/images/emprego.jpg",
-    texto: "Oportunidades de trabalho, capacitação e inclusão no mercado profissional.",
-    link: "https://www.portaldainclusao.org.br/cms/solicitacao-de-participacao",
-  },
-  {
-    titulo: "Educação Inclusiva",
-    imagem: "/images/educacao.png",
-    texto: "Direitos e recursos para acesso à educação com suporte e equidade.",
-    link: "https://todospelaeducacao.org.br/noticias/conheca-o-historico-da-legislacao-sobre-educacao-inclusiva/",
-  },
-  {
-    titulo: "Acessibilidade Urbana e Mobilidade",
-    imagem: "/images/acessibi.jpg",
-    texto: "Conheça mais sobre infraestrutura, transporte e acessos adequados para todos os espaços públicos.",
-    link: "https://itdp.org/wp-content/uploads/2022/06/Acesso-para-pessoas-com-deficiencia-em-areas-urbanas.pdf",
-  },
-  {
-    titulo: "Comunidades e Apoio Psicológico",
-    imagem: "/images/comunidade.jpg",
-    texto: "Acolhimento emocional e atendimento psicológico especializado. Saiba como acessar essas formas de ajuda.",
-    link: "https://www.gov.br/mds/pt-br/acoes-e-programas/suas/unidades-de-atendimento/servico-de-acolhimento-para-pessoas-com-deficiencia",
-  },
-  {
-    titulo: "Produtos e Tecnologia Assistiva",
-    imagem: "/images/tecnologia.jpg",
-    texto: "Conheça equipamentos e tecnologias que promovem a autonomia e inclusão.",
-    link: "https://www.icom.app/tecnologia-assistiva-oque-e-tipos-e-ferramentas/",
-  },
-  {
-    titulo: "Denúncias e Reclamações",
-    imagem: "/images/denuncias.jpg",
-    texto: "Canais para relatar violações de direitos, abusos ou falta de acessibilidade. Atende 24h, todos os dias.",
-    link: "https://capital.sp.gov.br/web/pessoa_com_deficiencia/w/publicacoes/307925",
-  }
-];
-
-const Listagem = () => {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 bg-[#fdf7f3] text-[#1b4b5a]">
-      {temas.map((tema, index) => (
-        <a
-          key={index}
-          href={tema.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block hover:shadow-xl transition-shadow duration-300"
-        >
-          <div className="border-2 border-[#49a7b0] bg-white text-[#1b4b5a] shadow-lg h-full p-4 flex flex-col gap-4">
-            <div className="h-40 w-full relative">
-              <Image
-                src={tema.imagem}
-                alt={`Imagem ilustrativa para ${tema.titulo}`}
-                fill
-                className="object-cover rounded"
-              />
-            </div>
-            <h2 className="text-lg font-bold border-b border-[#49a7b0] pb-2">{tema.titulo}</h2>
-            <p className="text-sm flex-1">{tema.texto}</p>
-            <p className="text-[#f2854b] font-semibold mt-auto">Saiba mais →</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  );
-};
-
-export default Listagem;
->>>>>>> Stashed changes
