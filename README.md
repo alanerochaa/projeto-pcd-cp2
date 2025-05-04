@@ -83,7 +83,7 @@ portal-pcd/
 ├── postcss.config.js             # Configuração do PostCSS
 ├── package-lock.json             # Controle de versão de dependências
 ├── package.json                  # Dependências e scripts do projeto
-└── README.md                     # Este arquivo
+└── README.md                     
 
 ```
 ## 📊 **Como Rodar o Projeto Localmente**
