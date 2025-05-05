@@ -18,7 +18,7 @@ export default function LoginForm() {
     const usuariosValidos = [
       { email: 'alane@gmail.com', senha: '123456' },
       { email: 'julia@gmail.com', senha: '654321' },
-      { email: 'maria@email.com', senha: '654321' },
+      { email: 'maria@email.com', senha: '65432' },
     ]
 
     const usuarioValido = usuariosValidos.find(
